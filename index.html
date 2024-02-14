@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Fusion Fits</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>  
+
+    <style>
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1em;
+        }
+        .logo img {
+            width: 150px; /* Adjust the width as needed */
+            height: auto; /* Maintain aspect ratio */
+        }
+        .contact-info {
+            text-align: center;
+            margin-top: 1px;
+        }
+        .contact-info i {
+            margin-right: 5px;
+        }
+        .contact-info a {
+            color: #333;
+            text-decoration: none;
+        }
+        .button-container {
+            text-align: right; /* Align the content to the right */
+            margin-top: 10px;
+            margin-bottom: 20px; /* Add margin at the bottom */
+        }
+        .button-container button {
+            background-color: #abd0a4;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .button-container button:hover {
+            background-color: #dc4372;
+        }
+
+        .separated-buttons button {
+            margin-right: 10px;
+        }
+        #about h2 {
+        text-align: center; 
+        margin-top: 70px; 
+    }
+
+        #products h2 {
+        text-align: center; 
+        margin-top: 90px; 
+    }
+    </style>
+
+
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="mylogo.jpg" alt="My Logo">
+        </div>
+        <div class="sections">
+            <button id="about-button">About Us</button>
+
+            <button onclick="window.location.href='#products'">Products</button>
+            <button onclick="window.location.href='#contact'">Contact Us</button>
+        </div>
+    </header>
+    </body>
+<center>   
+    <h2>Our website is currently under construction.</h2>
+        <p> If you find your favorite tops, feel free to message us on Facebook.</p> 
+        <p> Just Screenshot and message me </p>
+        <h3> facebook: Xi Ling</h3>
+    
+
+    <script>
+        document.getElementById("about-button").addEventListener("click", function() {
+        document.getElementById("about-text").scrollIntoView({ behavior: 'smooth' });
+    });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const form = document.getElementById("order-form");
+
+            form.addEventListener("submit", function(event) {
+                event.preventDefault(); // Prevent the form from submitting normally
+
+                // Get form data
+                const formData = new FormData(form);
+
+                // Convert form data to JSON
+                const jsonData = {};
+                formData.forEach((value, key) => {
+                    jsonData[key] = value;
+                });
+
+                // Send data to server
+                fetch('/submit-order', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(jsonData)
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    console.log(data); // Log the response from the server
+                    alert('Order received successfully!');
+                })
+                .catch(error => {
+                    console.error('There was a problem with your fetch operation:', error);
+                    alert('Failed to submit order. Please try again.');
+                });
+            });
+        });
+    </script>
+
+    
+
+    
+
+    <!-- About Us Section -->
+    <center>
+        
+        <div id="about-text">
+            <p><h2>About Us</h2></p>
+            <p>Welcome to Fusion Fits</p>
+            <p>Your Exclusive Collection of Assorted Tops!</p>
+            <p>At Fusion Fits, we curate a diverse range of tops, reflecting our passion for quality, diversity, and individuality in fashion.</p>
+            <p>Each piece tells a unique story, from trendy statements to timeless classics, exceeding your expectations in style, comfort, and quality.</p>
+            <p>As the sole proprietor, I personally select and curate each item with a commitment to excellence, ensuring tops that elevate your wardrobe and reflect your unique style.</p>
+            <p>Whether it's a work blouse, cozy sweater, or chic night-out top, Fusion Fits has you covered.</p>
+            <p>Join us on a journey celebrating the art of fashion and self-expression through our exclusive assorted tops collection.</p>
+            <p>Discover the fusion of style, versatility, and quality with Fusion Fits – because your wardrobe deserves the best.</p>
+        </div>
+        
+        
+        
+
+    <!-- Product List Section -->
+    <div id="products">
+        <h2>Products</h2>
+        <div id="product-list">
+        </div>
+    </div>
+
+    <!-- Contact Us Section -->
+    <div id="contact">
+        <h2>Contact Us</h2>
+        <div class="contact-info">
+            <div class="email">
+                <i class="fas fa-envelope"></i>
+                <a href="Facebook:https://www.facebook.com/gambitqueens94/ Xi Ling ">Facebook: Xi Ling</a>
+            </div>
+            
+
+    <script src="script.js"></script> <!-- Make sure to include your JavaScript file -->
+</center>
+</body>
+</html>
